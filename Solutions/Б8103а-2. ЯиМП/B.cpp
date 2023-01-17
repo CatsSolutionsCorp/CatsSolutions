@@ -9,7 +9,7 @@ int main() {
 	if (a > b) {
 		temp = a;
 		a = b;
-		b = a;
+		b = temp;
 	}
 	if ((a % 2 != 0 && (b - a - 1) % 4 == 2) || (a % 2 == 0 && (b - a - 1) % 4 == 0)) {
 		if ((b - a) == 0) {
@@ -17,7 +17,7 @@ int main() {
 			return 0;
 		}
 
-		fout << b - a - 1 + a - 1;
+		fout << b + a - 1;
 
 		return 0;
 	}
