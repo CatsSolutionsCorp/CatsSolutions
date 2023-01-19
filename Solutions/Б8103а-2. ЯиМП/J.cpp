@@ -1,34 +1,42 @@
-//Код не для той задачи. Это "Кондиционеры", а не "Ближайшее число"
-
 #include <fstream>
+#include <vector>
 
 int main()
 {
-    int n, * a, m, * b, * c, sum = 0;
-    std::ifstream fin("cond.in");
-    std::ofstream fout("cond.out");
+    int n, * a, * res;
+    std::ifstream fin("input.txt");
+    std::ofstream fout("output.txt");
     fin >> n;
     a = new int[n];
     for (int i = 0; i < n; i++)
         fin >> a[i];
 
-    fin >> m;
-    b = new int[m];
-    c = new int[m];
+    res = new int[n];
+    res[n - 1] = a[n - 1];
 
-    for (int i = 0; i < m; i++)
-        fin >> b[i] >> c[i]; 
+    std::vector<int> list;
 
-    for (int i = 0; i < n; i++)
+    list.push_back(a[n - 1]);
+
+    for (int i = n - 2; i >= 0; i--)
     {
-        int min = 1001;
-        for (int j = 0; j < m; j++)
-            if (a[i] <= b[j] && c[j] < min)
-                min = c[j];
-        sum += min;
+        while (a[i] >= list[list.size() - 1])
+        {
+            list.pop_back();
+            if (list.size() == 0)
+                break;
+        }
+        list.push_back(a[i]);
+        if (list.size() == 1)
+            res[i] = a[i];
+        else
+            res[i] = list[list.size() - 2];
     }
 
-    fout << sum;
+    for (int i = 0; i < n - 1; i++)
+        fout << res[i] << " ";
+    
+    fout << res[n - 1];
 
     return 0;
 }
