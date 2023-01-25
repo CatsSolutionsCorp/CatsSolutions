@@ -5,7 +5,6 @@
  *             SALAM              *
  *             VORAM              *
  **********************************
- задача кек
 **/
 
 #include <iostream>
@@ -14,6 +13,7 @@
 int main() {
 	long double n;
 	while (std::cin >> n)
+		// задача кек
     	std::cout << (long long) std::sqrt(n) << std::endl;
 
 	return 0;
